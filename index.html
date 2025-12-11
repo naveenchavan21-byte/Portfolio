@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CYBER PORTFOLIO — Neon Hacker Mode</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader" class="preloader active">
+    <div class="preloader-content">
+      <div class="enter-btn" id="enterBtn" role="button" tabindex="0" aria-pressed="false">
+        <div class="enter-icon"><i class="fas fa-door-open"></i></div>
+        <div class="enter-text">
+          <h1 class="enter-title">ENTER</h1>
+          <p class="enter-subtitle">CYBER DIMENSION</p>
+        </div>
+        <div class="loading-circle">
+          <div class="circle-back"></div>
+          <div class="circle-progress" id="circleProgress"></div>
+          <div class="circle-text" id="circleText">0%</div>
+        </div>
+      </div>
+
+      <div class="terminal">
+        <p>> INITIALIZING SYSTEM...</p>
+        <p>> LOADING CYBER MODULES...</p>
+        <p>> ESTABLISHING CONNECTION...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div id="mainSite" class="main-site">
+    <!-- theme toggle -->
+    <button id="themeBtn" class="theme-btn" aria-label="Toggle Theme"><i class="fas fa-magic"></i></button>
+
+    <!-- header/status -->
+    <div class="status-bar container">
+      <span class="status-dot active"></span>
+      <span class="status-text">SYSTEM ACTIVE</span>
+      <span class="status-time" id="currentTime">00:00:00</span>
+    </div>
+
+    <!-- hero / split layout -->
+    <main class="main-content container">
+      <div class="split-layout">
+        <!-- LEFT -->
+        <div class="left-side">
+          <h1 class="main-title">CYBER<br>PORTFOLIO</h1>
+          <div class="hero">
+            <p class="hello">HELLO, I'M</p>
+            <h2 class="my-name">YOUR NAME</h2>
+
+            <div class="job-title">
+              <span class="static">CYBER</span>
+              <div class="dynamic-all">
+                <span class="word-together">WORKER</span>
+                <span class="word-together">ENGINEER</span>
+                <span class="word-together">DEVELOPER</span>
+                <span class="word-together">ARCHITECT</span>
+                <span class="word-together">HACKER</span>
+              </div>
+            </div>
+
+            <p class="tagline"><i class="fas fa-bolt"></i> Building digital realities with neon code</p>
+          </div>
+
+          <div class="quick-info">
+            <div class="info-box"><i class="fas fa-map-marker-alt"></i>
+              <div><h4>LOCATION</h4><p>Digital Dimension</p></div>
+            </div>
+            <div class="info-box"><i class="fas fa-briefcase"></i>
+              <div><h4>STATUS</h4><p>Available for Missions</p></div>
+            </div>
+            <div class="info-box"><i class="fas fa-code"></i>
+              <div><h4>SPECIALTY</h4><p>Frontend Alchemy</p></div>
+            </div>
+          </div>
+
+          <div class="bio">
+            <h3><i class="fas fa-terminal"></i> BIO</h3>
+            <p>Digital artisan crafting immersive cyber experiences. Transforming ideas into interactive realities with clean code and neon aesthetics.</p>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><div class="num">50+</div><div class="label">Projects</div></div>
+            <div class="stat"><div class="num">3+</div><div class="label">Years</div></div>
+            <div class="stat"><div class="num">99%</div><div class="label">Energy</div></div>
+            <div class="stat"><div class="num">24/7</div><div class="label">Active</div></div>
+          </div>
+
+          <div class="buttons">
+            <button class="btn primary" onclick="scrollToSection('projects')"><i class="fas fa-rocket"></i> VIEW PROJECTS</button>
+            <button class="btn secondary" onclick="scrollToSection('contact')"><i class="fas fa-comment-alt"></i> CONTACT ME</button>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right-side">
+          <div class="photo-box">
+            <div class="photo"><i class="fas fa-user-astronaut"></i><p>CYBER AVATAR</p></div>
+          </div>
+
+          <div class="mini-terminal">
+            <div class="term-header">
+              <div class="dots"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+              <span>system_terminal.exe</span>
+            </div>
+            <div class="term-body">
+              <p>> Initializing cyber portfolio...</p>
+              <p>> Loading user data: <span class="green-text">COMPLETE</span></p>
+              <p>> Neural interface: <span class="yellow-text">ACTIVE</span></p>
+              <p>> Energy level: <span class="cyan-text">99%</span></p>
+              <p>> Last update: <span id="updateTime">Just now</span></p>
+            </div>
+          </div>
+
+          <div class="skills">
+            <h3><i class="fas fa-cogs"></i> SKILLS MATRIX</h3>
+            <div class="skill"><span>HTML/CSS</span><div class="bar"><div class="fill" style="width:95%"></div></div></div>
+            <div class="skill"><span>JAVASCRIPT</span><div class="bar"><div class="fill" style="width:90%"></div></div></div>
+            <div class="skill"><span>UI/UX</span><div class="bar"><div class="fill" style="width:85%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <div class="section-header">
+          <h2><i class="fas fa-user-secret"></i> ABOUT ME</h2><div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>The Cyber Developer</h3>
+            <p>I'm a passionate developer who lives and breathes code. With over 3 years of experience in creating digital experiences, I specialize in frontend development, UI/UX design, and creating immersive cyber-themed interfaces.</p>
+            <div class="about-stats">
+              <div class="about-stat"><span class="stat-num">100+</span><span class="stat-label">Coding Hours</span></div>
+              <div class="about-stat"><span class="stat-num">50+</span><span class="stat-label">Projects</span></div>
+              <div class="about-stat"><span class="stat-num">24/7</span><span class="stat-label">Learning Mode</span></div>
+            </div>
+          </div>
+          <div class="about-image"><div class="cyber-avatar"><i class="fas fa-code"></i></div></div>
+        </div>
+      </section>
+
+      <!-- TECH STACK -->
+      <section id="skills-full" class="section">
+        <div class="section-header"><h2><i class="fas fa-brain"></i> TECH STACK</h2><div class="section-line"></div></div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3><i class="fas fa-code"></i> Frontend</h3>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-name">HTML5</span><div class="skill-level"><div class="level-bar" style="width:98%"></div></div></div>
+              <div class="skill-item"><span class="skill-name">CSS3</span><div class="skill-level"><div class="level-bar" style="width:95%"></div></div></div>
+              <div class="skill-item"><span class="skill-name">JavaScript</span><div class="skill-level"><div class="level-bar" style="width:90%"></div></div></div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-paint-brush"></i> Design</h3>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-name">UI/UX</span><div class="skill-level"><div class="level-bar" style="width:88%"></div></div></div>
+              <div class="skill-item"><span class="skill-name">Figma</span><div class="skill-level"><div class="level-bar" style="width:85%"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <div class="section-header"><h2><i class="fas fa-project-diagram"></i> PROJECT ARCHIVE</h2><div class="section-line"></div></div>
+        <div class="projects-grid">
+          <div class="project-card"><div class="project-image"><i class="fas fa-globe"></i><div class="project-badge">WEB</div></div>
+            <div class="project-content"><h3>Cyber Portfolio V2</h3><p>A futuristic portfolio website with neon aesthetics and interactive elements.</p>
+              <div class="project-tech"><span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span></div>
+              <div class="project-links"><a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+            </div></div>
+
+          <div class="project-card"><div class="project-image"><i class="fas fa-shopping-cart"></i><div class="project-badge">E-COMMERCE</div></div>
+            <div class="project-content"><h3>Neon Commerce</h3><p>Cyber-themed e-commerce platform with dark mode and secure payment integration.</p>
+              <div class="project-tech"><span class="tech-tag">React</span><span class="tech-tag">Node.js</span><span class="tech-tag">MongoDB</span></div>
+              <div class="project-links"><a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
+            </div></div>
+        </div>
+      </section>
+
+      <!-- CERTIFICATES -->
+      <section id="certificates" class="section">
+        <div class="section-header"><h2><i class="fas fa-award"></i> CERTIFICATION VAULT</h2><div class="section-line"></div></div>
+        <div class="certificates-grid">
+          <div class="certificate-card"><div class="certificate-header"><i class="fab fa-js-square"></i><h3>JavaScript Mastery</h3></div>
+            <div class="certificate-body"><p class="cert-issuer">CodeMaster Academy</p><p class="cert-date">Issued: Dec 2023</p></div></div>
+
+          <div class="certificate-card"><div class="certificate-header"><i class="fab fa-react"></i><h3>React Developer</h3></div>
+            <div class="certificate-body"><p class="cert-issuer">React Institute</p><p class="cert-date">Issued: Nov 2023</p></div></div>
+        </div>
+      </section>
+
+      <!-- CONTACT (REPLACED FULL) -->
+      <section id="contact" class="section contact-section">
+        <div class="container contact-wrapper">
+          <!-- LEFT: Puppet family -->
+          <div class="puppet-area" id="puppetArea" aria-hidden="true">
+            <div class="puppet-base">
+              <!-- puppet 0 -->
+              <div class="puppet" data-index="0">
+                <svg viewBox="0 0 120 300" preserveAspectRatio="xMidYMax meet" class="puppet-svg">
+                  <rect class="body" x="10" y="10" rx="34" ry="34" width="100" height="260"></rect>
+                  <g class="face">
+                    <circle class="eye left" cx="38" cy="90" r="4"/>
+                    <circle class="eye right" cx="82" cy="90" r="4"/>
+                    <path class="mouth" d="M42,118 Q60,132 78,118" stroke-width="3" fill="transparent" stroke-linecap="round"/>
+                  </g>
+                  <rect class="base-stand" x="16" y="274" width="88" height="10" rx="5"></rect>
+                </svg>
+              </div>
+
+              <!-- puppet 1 (big) -->
+              <div class="puppet big" data-index="1">
+                <svg viewBox="0 0 140 340" preserveAspectRatio="xMidYMax meet" class="puppet-svg">
+                  <rect class="body" x="10" y="10" rx="40" ry="40" width="120" height="300"></rect>
+                  <g class="face">
+                    <circle class="eye left" cx="46" cy="110" r="5"/>
+                    <circle class="eye right" cx="94" cy="110" r="5"/>
+                    <path class="mouth" d="M52,150 Q72,168 92,150" stroke-width="3" fill="transparent" stroke-linecap="round"/>
+                  </g>
+                  <rect class="base-stand" x="22" y="314" width="96" height="10" rx="5"></rect>
+                </svg>
+              </div>
+
+              <!-- puppet 2 (small baby) -->
+              <div class="puppet small" data-index="2">
+                <svg viewBox="0 0 80 200" preserveAspectRatio="xMidYMax meet" class="puppet-svg">
+                  <rect class="body" x="8" y="8" rx="30" ry="30" width="64" height="160"></rect>
+                  <g class="face">
+                    <circle class="eye left" cx="28" cy="56" r="3"/>
+                    <circle class="eye right" cx="48" cy="56" r="3"/>
+                    <path class="mouth" d="M30,82 Q40,92 50,82" stroke-width="2.5" fill="transparent" stroke-linecap="round"/>
+                  </g>
+                  <rect class="base-stand" x="12" y="168" width="56" height="8" rx="4"></rect>
+                </svg>
+              </div>
+
+              <!-- puppet 3 -->
+              <div class="puppet" data-index="3">
+                <svg viewBox="0 0 120 300" preserveAspectRatio="xMidYMax meet" class="puppet-svg">
+                  <rect class="body" x="10" y="10" rx="34" ry="34" width="100" height="260"></rect>
+                  <g class="face">
+                    <circle class="eye left" cx="38" cy="90" r="4"/>
+                    <circle class="eye right" cx="82" cy="90" r="4"/>
+                    <path class="mouth" d="M42,118 Q60,132 78,118" stroke-width="3" fill="transparent" stroke-linecap="round"/>
+                  </g>
+                  <rect class="base-stand" x="16" y="274" width="88" height="10" rx="5"></rect>
+                </svg>
+              </div>
+
+              <!-- star placeholder -->
+              <div class="puppet-star" id="puppetStar" aria-hidden="true">
+                <svg viewBox="0 0 100 100" class="star-svg">
+                  <polygon class="star" points="50,6 61,38 95,38 67,58 78,90 50,70 22,90 33,58 5,38 39,38"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Transmission form -->
+          <div class="transmission-panel">
+            <div class="transmission-header">
+              <h2><i class="fas fa-satellite-dish"></i> TRANSMISSION HUB</h2>
+              <div class="subline">Drop your signal. We'll reply in binary hugs.</div>
+            </div>
+
+            <form id="transmitForm" class="transmit-form" autocomplete="off">
+              <label class="field"><span class="field-label">YOUR NAME</span><input type="text" name="name" required placeholder="Agent Name"></label>
+              <label class="field"><span class="field-label">EMAIL</span><input type="email" name="email" required placeholder="agent@matrix.zone"></label>
+              <label class="field"><span class="field-label">MESSAGE</span><textarea name="message" rows="4" required placeholder="Transmit message..."></textarea></label>
+
+              <div class="form-row">
+                <button type="submit" class="btn primary btn-send"><i class="fas fa-paper-plane"></i> SEND TRANSMISSION</button>
+                <div class="transmit-status" id="transmitStatus">Idle</div>
+              </div>
+
+              <div class="transmit-scan" id="transmitScan" aria-hidden="true"><div class="scan-bar"></div></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="main-footer">
+        <div class="footer-logo">CYBER PORTFOLIO</div>
+        <p class="footer-quote">"In a world of ones and zeros, we choose to be the exclamation point."</p>
+        <div class="footer-links"><a href="#about">About</a><a href="#skills-full">Skills</a><a href="#projects">Projects</a><a href="#certificates">Certificates</a><a href="#contact">Contact</a></div>
+        <p class="footer-copyright">© 2025 Cyber Portfolio. All systems operational.</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Cursor glow element (created by JS if missing) -->
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
