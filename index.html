@@ -1,311 +1,917 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CYBER PORTFOLIO — Neon Hacker Mode</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naveen Chavan | Portfolio</title>
+  
+  <style>
+    /* ===== ROOT VARIABLES ===== */
+    :root {
+      --bg: #0a0a16;
+      --text: #f0f0ff;
+      --neon-blue: #00f3ff;
+      --neon-purple: #9d00ff;
+      --neon-pink: #ff00ff;
+      --card: rgba(20, 20, 40, 0.7);
+    }
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    body.light {
+      --bg: #f0f5ff;
+      --text: #0a0a16;
+      --neon-blue: #0066ff;
+      --neon-purple: #7b00ff;
+      --neon-pink: #ff0066;
+      --card: rgba(255, 255, 255, 0.9);
+    }
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+      min-height: 100vh;
+    }
+
+    /* ===== NAVBAR ===== */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      background: rgba(10, 10, 22, 0.8);
+      z-index: 1000;
+      border-bottom: 1px solid var(--neon-blue);
+      box-shadow: 0 0 20px var(--neon-blue);
+    }
+
+    header h2 {
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px var(--neon-blue);
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 0.3rem 0;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--neon-blue);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    #themeToggle {
+      background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+      border: none;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 15px var(--neon-blue);
+      margin-left: 1rem;
+    }
+
+    #themeToggle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px var(--neon-blue);
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 2rem;
+    }
+
+    /* Animated Background */
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.4;
+      z-index: -1;
+      animation: float-orb 20s infinite alternate ease-in-out;
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--neon-blue), transparent 70%);
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--neon-purple), transparent 70%);
+      bottom: 15%;
+      right: 10%;
+      animation-delay: 5s;
+    }
+
+    .orb-3 {
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+      top: 50%;
+      left: 70%;
+      animation-delay: 10s;
+    }
+
+    @keyframes float-orb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(50px, -30px) scale(1.1); }
+      66% { transform: translate(-30px, 40px) scale(0.9); }
+    }
+
+    /* Hero Content */
+    .hero-content {
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .neon-text {
+      font-size: 4rem;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px var(--neon-blue),
+                   0 0 20px var(--neon-blue),
+                   0 0 30px var(--neon-blue);
+      animation: neon-flicker 2s infinite alternate;
+    }
+
+    @keyframes neon-flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 0 0 10px var(--neon-blue),
+                     0 0 20px var(--neon-blue),
+                     0 0 30px var(--neon-blue);
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin: 1.5rem 0 2.5rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 0 20px var(--neon-blue);
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px var(--neon-blue),
+                  0 0 40px var(--neon-purple);
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .mouse {
+      width: 30px;
+      height: 50px;
+      border: 2px solid var(--neon-blue);
+      border-radius: 15px;
+      margin: 0 auto 10px;
+      position: relative;
+    }
+
+    .wheel {
+      width: 4px;
+      height: 10px;
+      background: var(--neon-blue);
+      border-radius: 2px;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scroll-wheel 2s infinite;
+    }
+
+    @keyframes scroll-wheel {
+      0% { top: 10px; opacity: 1; }
+      100% { top: 30px; opacity: 0; }
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      border-radius: 2px;
+    }
+
+    .neon-accent {
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px var(--neon-blue);
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 15px;
+      border: 1px solid rgba(0, 243, 255, 0.3);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.2),
+                  inset 0 0 20px rgba(0, 243, 255, 0.1);
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 30px var(--neon-blue),
+                  0 0 40px rgba(157, 0, 255, 0.3);
+    }
+
+    /* ===== MATLAB SECTION ===== */
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .certificate-card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 15px;
+      border: 1px solid rgba(0, 243, 255, 0.2);
+      transition: all 0.3s ease;
+      text-align: center;
+      height: 100%;
+    }
+
+    .certificate-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+    }
+
+    .certificate-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .certificate-card h4 {
+      color: var(--neon-blue);
+      margin-bottom: 0.8rem;
+      font-size: 1.5rem;
+    }
+
+    .certificate-card p {
+      color: var(--text);
+      opacity: 0.9;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .certificate-date {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0.8rem 0 1.5rem;
+    }
+
+    .image-placeholder {
+      padding: 1.2rem;
+      background: rgba(0, 243, 255, 0.1);
+      border: 2px dashed var(--neon-blue);
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    .image-placeholder:hover {
+      background: rgba(0, 243, 255, 0.2);
+      border-style: solid;
+    }
+
+    .skills-container {
+      background: var(--card);
+      padding: 2.5rem;
+      border-radius: 15px;
+      margin-top: 2rem;
+    }
+
+    .skills-container h4 {
+      color: var(--neon-blue);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .skill-tag {
+      padding: 0.7rem 1.5rem;
+      background: rgba(0, 243, 255, 0.1);
+      border: 1px solid var(--neon-blue);
+      border-radius: 25px;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    .skill-tag:hover {
+      background: rgba(0, 243, 255, 0.2);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--neon-blue);
+    }
+
+    /* ===== PROJECTS ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 15px;
+      border: 1px solid rgba(0, 243, 255, 0.2);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+    }
+
+    .project-card h4 {
+      color: var(--neon-blue);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .project-card p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tech-tag {
+      padding: 0.3rem 0.8rem;
+      background: rgba(157, 0, 255, 0.1);
+      border: 1px solid var(--neon-purple);
+      border-radius: 15px;
+      font-size: 0.9rem;
+    }
+
+    /* ===== CONTACT FORM ===== */
+    input, textarea {
+      width: 100%;
+      margin-top: 0.8rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--neon-blue);
+      color: var(--text);
+      border-radius: 10px;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--neon-purple);
+      box-shadow: 0 0 15px var(--neon-blue);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px var(--neon-blue);
+    }
+
+    #formStatus {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-weight: 500;
+      padding: 0.8rem;
+      border-radius: 8px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 1rem;
+      opacity: 0.8;
+      border-top: 1px solid rgba(0, 243, 255, 0.2);
+      margin-top: 3rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+      }
+      
+      nav a {
+        margin: 0 0.5rem;
+      }
+      
+      .neon-text {
+        font-size: 2.8rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+      
+      section {
+        padding: 3rem 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- PRELOADER -->
-  <div id="preloader" class="preloader active">
-    <div class="preloader-content">
-      <div class="enter-btn" id="enterBtn" role="button" tabindex="0" aria-pressed="false">
-        <div class="enter-icon"><i class="fas fa-door-open"></i></div>
-        <div class="enter-text">
-          <h1 class="enter-title">ENTER</h1>
-          <p class="enter-subtitle">CYBER DIMENSION</p>
-        </div>
-        <div class="loading-circle">
-          <div class="circle-back"></div>
-          <div class="circle-progress" id="circleProgress"></div>
-          <div class="circle-text" id="circleText">0%</div>
-        </div>
-      </div>
+  <!-- NAVBAR -->
+  <header>
+    <h2>Naveen Chavan</h2>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#matlab">MATLAB</a>
+      <a href="#projects">Projects</a>
+      <a href="#interests">Interests</a>
+      <a href="#contact">Contact</a>
+      <button id="themeToggle" onclick="toggleMode()">🌙 Dark/Light</button>
+    </nav>
+  </header>
 
-      <div class="terminal">
-        <p>> INITIALIZING SYSTEM...</p>
-        <p>> LOADING CYBER MODULES...</p>
-        <p>> ESTABLISHING CONNECTION...</p>
+  <!-- HERO SECTION -->
+  <div class="hero">
+    <div class="particles"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    
+    <div class="hero-content">
+      <h1 class="neon-text">Hello, I'm <span style="color: var(--neon-blue);">Naveen</span></h1>
+      <p class="hero-subtitle">Engineering Student | MATLAB Expert | Tech Enthusiast<br>Passionate about Programming, Electronics & Creative Technology</p>
+      <a href="#contact" class="cta-button">Get in Touch</a>
+    </div>
+    
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
       </div>
+      <p>Scroll Down</p>
     </div>
   </div>
 
-  <!-- MAIN -->
-  <div id="mainSite" class="main-site">
-    <!-- theme toggle -->
-    <button id="themeBtn" class="theme-btn" aria-label="Toggle Theme"><i class="fas fa-magic"></i></button>
-
-    <!-- header/status -->
-    <div class="status-bar container">
-      <span class="status-dot active"></span>
-      <span class="status-text">SYSTEM ACTIVE</span>
-      <span class="status-time" id="currentTime">00:00:00</span>
-    </div>
-
-    <!-- hero / split layout -->
-    <main class="main-content container">
-      <div class="split-layout">
-        <!-- LEFT -->
-        <div class="left-side">
-          <h1 class="main-title">CYBER<br>PORTFOLIO</h1>
-          <div class="hero">
-            <p class="hello">HELLO, I'M</p>
-            <h2 class="my-name">YOUR NAME</h2>
-
-            <div class="job-title">
-              <span class="static">CYBER</span>
-              <div class="dynamic-all">
-                <span class="word-together">WORKER</span>
-                <span class="word-together">ENGINEER</span>
-                <span class="word-together">DEVELOPER</span>
-                <span class="word-together">ARCHITECT</span>
-                <span class="word-together">HACKER</span>
-              </div>
-            </div>
-
-            <p class="tagline"><i class="fas fa-bolt"></i> Building digital realities with neon code</p>
-          </div>
-
-          <div class="quick-info">
-            <div class="info-box"><i class="fas fa-map-marker-alt"></i>
-              <div><h4>LOCATION</h4><p>Digital Dimension</p></div>
-            </div>
-            <div class="info-box"><i class="fas fa-briefcase"></i>
-              <div><h4>STATUS</h4><p>Available for Missions</p></div>
-            </div>
-            <div class="info-box"><i class="fas fa-code"></i>
-              <div><h4>SPECIALTY</h4><p>Frontend Alchemy</p></div>
-            </div>
-          </div>
-
-          <div class="bio">
-            <h3><i class="fas fa-terminal"></i> BIO</h3>
-            <p>Digital artisan crafting immersive cyber experiences. Transforming ideas into interactive realities with clean code and neon aesthetics.</p>
-          </div>
-
-          <div class="stats">
-            <div class="stat"><div class="num">50+</div><div class="label">Projects</div></div>
-            <div class="stat"><div class="num">3+</div><div class="label">Years</div></div>
-            <div class="stat"><div class="num">99%</div><div class="label">Energy</div></div>
-            <div class="stat"><div class="num">24/7</div><div class="label">Active</div></div>
-          </div>
-
-          <div class="buttons">
-            <button class="btn primary" onclick="scrollToSection('projects')"><i class="fas fa-rocket"></i> VIEW PROJECTS</button>
-            <button class="btn secondary" onclick="scrollToSection('contact')"><i class="fas fa-comment-alt"></i> CONTACT ME</button>
-          </div>
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <h3 class="section-title">About <span class="neon-accent">Me</span></h3>
+    <div class="card">
+      <p style="font-size: 1.2rem; line-height: 1.8;">
+        I'm an engineering student passionate about technology, programming, and electronics. 
+        My expertise includes MATLAB programming, Simulink modeling, and signal processing. 
+        I enjoy solving complex problems and creating innovative solutions that bridge hardware and software.
+      </p>
+      <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
+        <div style="text-align: center;">
+          <div style="font-size: 2rem; color: var(--neon-blue);">🎓</div>
+          <h4>Engineering Student</h4>
         </div>
-
-        <!-- RIGHT -->
-        <div class="right-side">
-          <div class="photo-box">
-            <div class="photo"><i class="fas fa-user-astronaut"></i><p>CYBER AVATAR</p></div>
-          </div>
-
-          <div class="mini-terminal">
-            <div class="term-header">
-              <div class="dots"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
-              <span>system_terminal.exe</span>
-            </div>
-            <div class="term-body">
-              <p>> Initializing cyber portfolio...</p>
-              <p>> Loading user data: <span class="green-text">COMPLETE</span></p>
-              <p>> Neural interface: <span class="yellow-text">ACTIVE</span></p>
-              <p>> Energy level: <span class="cyan-text">99%</span></p>
-              <p>> Last update: <span id="updateTime">Just now</span></p>
-            </div>
-          </div>
-
-          <div class="skills">
-            <h3><i class="fas fa-cogs"></i> SKILLS MATRIX</h3>
-            <div class="skill"><span>HTML/CSS</span><div class="bar"><div class="fill" style="width:95%"></div></div></div>
-            <div class="skill"><span>JAVASCRIPT</span><div class="bar"><div class="fill" style="width:90%"></div></div></div>
-            <div class="skill"><span>UI/UX</span><div class="bar"><div class="fill" style="width:85%"></div></div></div>
-          </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2rem; color: var(--neon-blue);">💻</div>
+          <h4>MATLAB Expert</h4>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2rem; color: var(--neon-blue);">⚡</div>
+          <h4>Tech Enthusiast</h4>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- ABOUT -->
-      <section id="about" class="section">
-        <div class="section-header">
-          <h2><i class="fas fa-user-secret"></i> ABOUT ME</h2><div class="section-line"></div>
+  <!-- MATLAB CERTIFICATES -->
+  <section id="matlab">
+    <h3 class="section-title"><span class="neon-accent">MATLAB</span> Certificates</h3>
+    
+    <div class="certificates-grid">
+      <!-- Certificate 1 -->
+      <div class="certificate-card">
+        <div class="certificate-icon">📊</div>
+        <h4>MATLAB Onramp</h4>
+        <p>Completed foundational MATLAB programming course covering basic syntax, data types, and programming concepts.</p>
+        <div class="certificate-date">Issued: 2024 | MathWorks</div>
+        <div class="image-placeholder" onclick="showImage('matlab1.jpg')">
+          📸 Click to View Certificate
         </div>
-        <div class="about-content">
-          <div class="about-text">
-            <h3>The Cyber Developer</h3>
-            <p>I'm a passionate developer who lives and breathes code. With over 3 years of experience in creating digital experiences, I specialize in frontend development, UI/UX design, and creating immersive cyber-themed interfaces.</p>
-            <div class="about-stats">
-              <div class="about-stat"><span class="stat-num">100+</span><span class="stat-label">Coding Hours</span></div>
-              <div class="about-stat"><span class="stat-num">50+</span><span class="stat-label">Projects</span></div>
-              <div class="about-stat"><span class="stat-num">24/7</span><span class="stat-label">Learning Mode</span></div>
-            </div>
-          </div>
-          <div class="about-image"><div class="cyber-avatar"><i class="fas fa-code"></i></div></div>
+      </div>
+      
+      <!-- Certificate 2 -->
+      <div class="certificate-card">
+        <div class="certificate-icon">⚙️</div>
+        <h4>Simulink Basics</h4>
+        <p>Mastered model-based design and simulation fundamentals for dynamic system modeling and analysis.</p>
+        <div class="certificate-date">Issued: 2024 | MathWorks</div>
+        <div class="image-placeholder" onclick="showImage('matlab2.jpg')">
+          📸 Click to View Certificate
         </div>
-      </section>
-
-      <!-- TECH STACK -->
-      <section id="skills-full" class="section">
-        <div class="section-header"><h2><i class="fas fa-brain"></i> TECH STACK</h2><div class="section-line"></div></div>
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h3><i class="fas fa-code"></i> Frontend</h3>
-            <div class="skill-list">
-              <div class="skill-item"><span class="skill-name">HTML5</span><div class="skill-level"><div class="level-bar" style="width:98%"></div></div></div>
-              <div class="skill-item"><span class="skill-name">CSS3</span><div class="skill-level"><div class="level-bar" style="width:95%"></div></div></div>
-              <div class="skill-item"><span class="skill-name">JavaScript</span><div class="skill-level"><div class="level-bar" style="width:90%"></div></div></div>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3><i class="fas fa-paint-brush"></i> Design</h3>
-            <div class="skill-list">
-              <div class="skill-item"><span class="skill-name">UI/UX</span><div class="skill-level"><div class="level-bar" style="width:88%"></div></div></div>
-              <div class="skill-item"><span class="skill-name">Figma</span><div class="skill-level"><div class="level-bar" style="width:85%"></div></div></div>
-            </div>
-          </div>
+      </div>
+      
+      <!-- Certificate 3 -->
+      <div class="certificate-card">
+        <div class="certificate-icon">📡</div>
+        <h4>Signal Processing</h4>
+        <p>Learned digital signal processing and analysis techniques including filtering, transforms, and spectral analysis.</p>
+        <div class="certificate-date">Issued: 2024 | MathWorks</div>
+        <div class="image-placeholder" onclick="showImage('matlab3.jpg')">
+          📸 Click to View Certificate
         </div>
-      </section>
+      </div>
+    </div>
+    
+    <!-- MATLAB Skills -->
+    <div class="skills-container">
+      <h4>MATLAB & Technical Skills</h4>
+      <div class="skills-grid">
+        <span class="skill-tag">MATLAB Programming</span>
+        <span class="skill-tag">Simulink Modeling</span>
+        <span class="skill-tag">Signal Processing</span>
+        <span class="skill-tag">Data Analysis</span>
+        <span class="skill-tag">Control Systems</span>
+        <span class="skill-tag">Image Processing</span>
+        <span class="skill-tag">Algorithm Development</span>
+        <span class="skill-tag">GUI Development</span>
+        <span class="skill-tag">Hardware Integration</span>
+      </div>
+    </div>
+  </section>
 
-      <!-- PROJECTS -->
-      <section id="projects" class="section">
-        <div class="section-header"><h2><i class="fas fa-project-diagram"></i> PROJECT ARCHIVE</h2><div class="section-line"></div></div>
-        <div class="projects-grid">
-          <div class="project-card"><div class="project-image"><i class="fas fa-globe"></i><div class="project-badge">WEB</div></div>
-            <div class="project-content"><h3>Cyber Portfolio V2</h3><p>A futuristic portfolio website with neon aesthetics and interactive elements.</p>
-              <div class="project-tech"><span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span></div>
-              <div class="project-links"><a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
-            </div></div>
-
-          <div class="project-card"><div class="project-image"><i class="fas fa-shopping-cart"></i><div class="project-badge">E-COMMERCE</div></div>
-            <div class="project-content"><h3>Neon Commerce</h3><p>Cyber-themed e-commerce platform with dark mode and secure payment integration.</p>
-              <div class="project-tech"><span class="tech-tag">React</span><span class="tech-tag">Node.js</span><span class="tech-tag">MongoDB</span></div>
-              <div class="project-links"><a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
-            </div></div>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h3 class="section-title">My <span class="neon-accent">Projects</span></h3>
+    
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <h4>Signal Processing Analyzer</h4>
+        <p>A MATLAB-based application for analyzing and processing digital signals with various filtering techniques and visualization tools.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">MATLAB</span>
+          <span class="tech-tag">Signal Processing</span>
+          <span class="tech-tag">GUI</span>
         </div>
-      </section>
-
-      <!-- CERTIFICATES -->
-      <section id="certificates" class="section">
-        <div class="section-header"><h2><i class="fas fa-award"></i> CERTIFICATION VAULT</h2><div class="section-line"></div></div>
-        <div class="certificates-grid">
-          <div class="certificate-card"><div class="certificate-header"><i class="fab fa-js-square"></i><h3>JavaScript Mastery</h3></div>
-            <div class="certificate-body"><p class="cert-issuer">CodeMaster Academy</p><p class="cert-date">Issued: Dec 2023</p></div></div>
-
-          <div class="certificate-card"><div class="certificate-header"><i class="fab fa-react"></i><h3>React Developer</h3></div>
-            <div class="certificate-body"><p class="cert-issuer">React Institute</p><p class="cert-date">Issued: Nov 2023</p></div></div>
+      </div>
+      
+      <!-- Project 2 -->
+      <div class="project-card">
+        <h4>Control System Simulator</h4>
+        <p>Simulink model for simulating control systems with PID controllers and real-time parameter adjustment capabilities.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">Simulink</span>
+          <span class="tech-tag">Control Systems</span>
+          <span class="tech-tag">PID</span>
         </div>
-      </section>
-
-      <!-- CONTACT (REPLACED FULL) -->
-      <section id="contact" class="section contact-section">
-        <div class="container contact-wrapper">
-          <!-- LEFT: Puppet family -->
-          <div class="puppet-area" id="puppetArea" aria-hidden="true">
-            <div class="puppet-base">
-              <!-- puppet 0 -->
-              <div class="puppet" data-index="0">
-                <svg viewBox="0 0 120 300" preserveAspectRatio="xMidYMax meet" class="puppet-svg">
-                  <rect class="body" x="10" y="10" rx="34" ry="34" width="100" height="260"></rect>
-                  <g class="face">
-                    <circle class="eye left" cx="38" cy="90" r="4"/>
-                    <circle class="eye right" cx="82" cy="90" r="4"/>
-                    <path class="mouth" d="M42,118 Q60,132 78,118" stroke-width="3" fill="transparent" stroke-linecap="round"/>
-                  </g>
-                  <rect class="base-stand" x="16" y="274" width="88" height="10" rx="5"></rect>
-                </svg>
-              </div>
-
-              <!-- puppet 1 (big) -->
-              <div class="puppet big" data-index="1">
-                <svg viewBox="0 0 140 340" preserveAspectRatio="xMidYMax meet" class="puppet-svg">
-                  <rect class="body" x="10" y="10" rx="40" ry="40" width="120" height="300"></rect>
-                  <g class="face">
-                    <circle class="eye left" cx="46" cy="110" r="5"/>
-                    <circle class="eye right" cx="94" cy="110" r="5"/>
-                    <path class="mouth" d="M52,150 Q72,168 92,150" stroke-width="3" fill="transparent" stroke-linecap="round"/>
-                  </g>
-                  <rect class="base-stand" x="22" y="314" width="96" height="10" rx="5"></rect>
-                </svg>
-              </div>
-
-              <!-- puppet 2 (small baby) -->
-              <div class="puppet small" data-index="2">
-                <svg viewBox="0 0 80 200" preserveAspectRatio="xMidYMax meet" class="puppet-svg">
-                  <rect class="body" x="8" y="8" rx="30" ry="30" width="64" height="160"></rect>
-                  <g class="face">
-                    <circle class="eye left" cx="28" cy="56" r="3"/>
-                    <circle class="eye right" cx="48" cy="56" r="3"/>
-                    <path class="mouth" d="M30,82 Q40,92 50,82" stroke-width="2.5" fill="transparent" stroke-linecap="round"/>
-                  </g>
-                  <rect class="base-stand" x="12" y="168" width="56" height="8" rx="4"></rect>
-                </svg>
-              </div>
-
-              <!-- puppet 3 -->
-              <div class="puppet" data-index="3">
-                <svg viewBox="0 0 120 300" preserveAspectRatio="xMidYMax meet" class="puppet-svg">
-                  <rect class="body" x="10" y="10" rx="34" ry="34" width="100" height="260"></rect>
-                  <g class="face">
-                    <circle class="eye left" cx="38" cy="90" r="4"/>
-                    <circle class="eye right" cx="82" cy="90" r="4"/>
-                    <path class="mouth" d="M42,118 Q60,132 78,118" stroke-width="3" fill="transparent" stroke-linecap="round"/>
-                  </g>
-                  <rect class="base-stand" x="16" y="274" width="88" height="10" rx="5"></rect>
-                </svg>
-              </div>
-
-              <!-- star placeholder -->
-              <div class="puppet-star" id="puppetStar" aria-hidden="true">
-                <svg viewBox="0 0 100 100" class="star-svg">
-                  <polygon class="star" points="50,6 61,38 95,38 67,58 78,90 50,70 22,90 33,58 5,38 39,38"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <!-- RIGHT: Transmission form -->
-          <div class="transmission-panel">
-            <div class="transmission-header">
-              <h2><i class="fas fa-satellite-dish"></i> TRANSMISSION HUB</h2>
-              <div class="subline">Drop your signal. We'll reply in binary hugs.</div>
-            </div>
-
-            <form id="transmitForm" class="transmit-form" autocomplete="off">
-              <label class="field"><span class="field-label">YOUR NAME</span><input type="text" name="name" required placeholder="Agent Name"></label>
-              <label class="field"><span class="field-label">EMAIL</span><input type="email" name="email" required placeholder="agent@matrix.zone"></label>
-              <label class="field"><span class="field-label">MESSAGE</span><textarea name="message" rows="4" required placeholder="Transmit message..."></textarea></label>
-
-              <div class="form-row">
-                <button type="submit" class="btn primary btn-send"><i class="fas fa-paper-plane"></i> SEND TRANSMISSION</button>
-                <div class="transmit-status" id="transmitStatus">Idle</div>
-              </div>
-
-              <div class="transmit-scan" id="transmitScan" aria-hidden="true"><div class="scan-bar"></div></div>
-            </form>
-          </div>
+      </div>
+      
+      <!-- Project 3 -->
+      <div class="project-card">
+        <h4>Image Processing Toolbox</h4>
+        <p>A comprehensive image processing toolkit with edge detection, filtering, and transformation features for medical imaging analysis.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">MATLAB</span>
+          <span class="tech-tag">Image Processing</span>
+          <span class="tech-tag">Computer Vision</span>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- FOOTER -->
-      <footer class="main-footer">
-        <div class="footer-logo">CYBER PORTFOLIO</div>
-        <p class="footer-quote">"In a world of ones and zeros, we choose to be the exclamation point."</p>
-        <div class="footer-links"><a href="#about">About</a><a href="#skills-full">Skills</a><a href="#projects">Projects</a><a href="#certificates">Certificates</a><a href="#contact">Contact</a></div>
-        <p class="footer-copyright">© 2025 Cyber Portfolio. All systems operational.</p>
-      </footer>
-    </main>
-  </div>
+  <!-- INTERESTS -->
+  <section id="interests">
+    <h3 class="section-title">My <span class="neon-accent">Interests</span></h3>
+    <div class="card">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+        <div style="text-align: center; padding: 1.5rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🎮</div>
+          <h4>Gaming</h4>
+          <p>Strategy & simulation games</p>
+        </div>
+        <div style="text-align: center; padding: 1.5rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+          <h4>Space Tech</h4>
+          <p>Astronomy & space exploration</p>
+        </div>
+        <div style="text-align: center; padding: 1.5rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🏎️</div>
+          <h4>Cars & Tech</h4>
+          <p>Automotive technology</p>
+        </div>
+        <div style="text-align: center; padding: 1.5rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">💡</div>
+          <h4>Electronics</h4>
+          <p>Circuit design & IoT</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Cursor glow element (created by JS if missing) -->
-  <!-- Scripts -->
-  <script src="script.js"></script>
+  <!-- CONTACT -->
+  <section id="contact">
+    <h3 class="section-title">Contact <span class="neon-accent">Me</span></h3>
+    <div class="card">
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+        <button type="submit">Send Message</button>
+        <p id="formStatus"></p>
+      </form>
+    </div>
+    
+    <div style="text-align: center; margin-top: 3rem;">
+      <p style="font-size: 1.1rem; margin-bottom: 1rem;">Reach out to me directly:</p>
+      <p style="color: var(--neon-blue); font-size: 1.2rem; font-weight: bold;">
+        📧 naveen.chavan21@gmail.com
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Naveen Chavan. All rights reserved.<br>
+    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Engineering Portfolio | MATLAB Expert | Tech Enthusiast</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Theme Toggle
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      const btn = document.getElementById('themeToggle');
+      btn.textContent = document.body.classList.contains('light') ? '🌞 Light Mode' : '🌙 Dark Mode';
+    }
+
+    // Contact Form
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      status.textContent = "📤 Sending your message...";
+      status.style.color = "var(--neon-blue)";
+      status.style.background = "rgba(0, 243, 255, 0.1)";
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+
+      const data = new FormData(form);
+
+      try {
+        // ⚠️ TEST FORMSPREE ENDPOINT - Replace with yours later
+        const response = await fetch('https://formspree.io/f/xaqwnzrp', {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          status.textContent = '✅ Message sent successfully! I\'ll get back to you soon.';
+          status.style.color = "#00ff88";
+          status.style.background = "rgba(0, 255, 136, 0.1)";
+          form.reset();
+        } else {
+          status.textContent = '⚠️ Something went wrong. Please try again or email me directly.';
+          status.style.color = "#ffaa00";
+          status.style.background = "rgba(255, 170, 0, 0.1)";
+        }
+      } catch (error) {
+        status.textContent = '❌ Network error. Please check your connection.';
+        status.style.color = "#ff5555";
+        status.style.background = "rgba(255, 85, 85, 0.1)";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+
+    // Image Modal for Certificates
+    function showImage(imageSrc) {
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.95); display: flex; justify-content: center;
+        align-items: center; z-index: 2000; backdrop-filter: blur(10px);
+      `;
+      
+      const img = document.createElement('img');
+      img.src = imageSrc;
+      img.style.cssText = `
+        max-width: 90%; max-height: 90%; border: 3px solid var(--neon-blue);
+        border-radius: 10px; box-shadow: 0 0 50px var(--neon-blue);
+      `;
+      img.alt = "Certificate Image";
+      img.onerror = function() {
+        alert('Certificate image not found. Please add matlab1.jpg, matlab2.jpg, matlab3.jpg to your folder.');
+        document.body.removeChild(modal);
+      };
+      
+      const closeBtn = document.createElement('button');
+      closeBtn.textContent = '✕';
+      closeBtn.style.cssText = `
+        position: absolute; top: 30px; right: 30px;
+        background: var(--neon-blue); color: var(--bg);
+        border: none; width: 50px; height: 50px;
+        border-radius: 50%; font-size: 1.8rem; cursor: pointer;
+        box-shadow: 0 0 20px var(--neon-blue);
+      `;
+      
+      closeBtn.onclick = () => document.body.removeChild(modal);
+      modal.onclick = (e) => { 
+        if (e.target === modal) document.body.removeChild(modal); 
+      };
+      
+      modal.appendChild(img);
+      modal.appendChild(closeBtn);
+      document.body.appendChild(modal);
+    }
+
+    // Create Animated Particles
+    function initParticles() {
+      const container = document.querySelector('.particles');
+      if (!container) return;
+      
+      for (let i = 0; i < 40; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+          position: absolute;
+          width: ${Math.random() * 4 + 1}px;
+          height: ${Math.random() * 4 + 1}px;
+          background: var(--neon-blue);
+          border-radius: 50%;
+          top: ${Math.random() * 100}%;
+          left: ${Math.random() * 100}%;
+          opacity: ${Math.random() * 0.6 + 0.1};
+          animation: particle-float ${Math.random() * 15 + 8}s infinite linear;
+          box-shadow: 0 0 10px var(--neon-blue);
+        `;
+        container.appendChild(particle);
+      }
+      
+      // Add CSS animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes particle-float {
+          0% { transform: translateY(0) translateX(0); opacity: 0.7; }
+          100% { transform: translateY(${Math.random() * -100 - 50}vh) 
+                          translateX(${Math.random() * 100 - 50}vw); opacity: 0; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      initParticles();
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId.startsWith('#')) {
+            e.preventDefault();
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+              });
+            }
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
