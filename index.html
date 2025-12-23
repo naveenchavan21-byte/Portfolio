@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naveen Chavan | Portfolio</title>
+  <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   
   <style>
     /* ===== ROOT VARIABLES ===== */
@@ -546,6 +549,30 @@
       section {
         padding: 3rem 1rem;
       }
+
+      .whatsapp-float {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    background-color: #1ebe5d;
+}
+
     }
   </style>
 </head>
@@ -762,6 +789,14 @@
     <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Engineering Portfolio | MATLAB Expert | Tech Enthusiast</p>
   </footer>
 
+  <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20I%20visited%20your%20website"
+   class="whatsapp-float"
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+    <i class="fa fa-whatsapp"></i>
+</a>
+
+
   <!-- JAVASCRIPT -->
   <script>
     // Theme Toggle
@@ -915,3 +950,4 @@
   </script>
 </body>
 </html>
+
